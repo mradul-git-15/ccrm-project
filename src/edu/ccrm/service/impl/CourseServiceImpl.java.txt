@@ -1,0 +1,30 @@
+package edu.ccrm.service.impl;
+
+import edu.ccrm.config.DataStore;
+import edu.ccrm.domain.Course;
+import edu.ccrm.service.CourseService;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CourseServiceImpl implements CourseService {
+    private final DataStore dataStore = DataStore.getInstance();
+
+    @Override
+    public void addCourse(Course course) {
+        if(dataStore.getCourses().containsKey(course.getCode())) {
+            System.out.println("Course code already exists!");
+            return;
+        }
+        dataStore.getCourses().put(course.getCode(), course);
+        dataStore.saveCourses();
+        System.out.println("Course " + course.getTitle() + " added successfully.");
+    }
+
+    @Override
+    public List<Course> listCourses() {
+        return new ArrayList<>(dataStore.getCourses().values());
+    }
+}
+
+

@@ -1,0 +1,32 @@
+package edu.ccrm.io;
+
+import java.io.*;
+import java.nio.file.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class BackupService {
+
+    private static final String BACKUP_FOLDER = "backup";
+
+    public static void backupData() {
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        Path backupPath = Paths.get(BACKUP_FOLDER, timestamp);
+
+        try {
+            Files.createDirectories(backupPath);
+
+            DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get("."), "*.{dat,csv}");
+            for (Path file : stream) {
+                Path dest = backupPath.resolve(file.getFileName());
+                Files.copy(file, dest, StandardCopyOption.REPLACE_EXISTING);
+            }
+
+            System.out.println("Backup completed at: " + backupPath.toAbsolutePath());
+
+        } catch (IOException e) {
+            System.out.println("Error during backup: " + e.getMessage());
+        }
+    }
+}
+
