@@ -1,212 +1,121 @@
 Campus Course & Records Manager (CCRM)
+ Project Overview
 
-A console-based Java SE application to manage students, courses, enrollments, grades, and data backups for an academic institute.
-
-This project demonstrates core and advanced Java concepts, including OOP, exception handling, NIO.2, Streams API, Date/Time API, design patterns, recursion, and functional programming.
+The Campus Course & Records Manager (CCRM) is a Java-based system designed to simplify the management of student and course information within an academic environment. It allows administrators to add, list, and update records in a structured manner, while also providing features for secure backup and exporting of stored data. The project demonstrates core object-oriented programming concepts such as encapsulation, inheritance, polymorphism, and abstraction, and integrates file-handling operations for persistence.
 
  Features
-Student Management
 
-Add, list, update, and deactivate students.
+Student Management: Add new students and display the student list.
 
-Attributes: ID, name, major, status.
+Course Management: Create and view courses with details such as code, credits, semester, and instructor.
 
-Print student profiles.
+Enrollment & Records: Map students to courses and maintain academic details.
 
-Course Management
+Backup & Export: Save all data into timestamped folders and CSV files for external use.
 
-Add, list, update, and deactivate courses.
+Menu-Driven Interface: Command-line menus for intuitive navigation.
 
-Attributes: course code, title, credits, instructor, semester, department.
+ Evolution of Java
 
-Supports search/filter using Java Streams API.
+Java 1.0 (1996): Initial release with applet support.
 
-Enrollment & Grading
+Java 2 (1998): Introduction of Swing, Collections Framework.
 
-Enroll and unenroll students in courses.
+Java 5 (2004): Generics, enhanced for-loop, annotations.
 
-Record marks, compute grades, and calculate GPA.
+Java 8 (2014): Lambda expressions, Streams API, default methods.
 
-Generate transcripts with overridden toString() methods.
+Java 17 (2021): Long-Term Support version, pattern matching, sealed classes.
 
-File Operations
+ Editions of Java
+Edition	Purpose	Example Use
+Java SE	Core Java for desktop/CLI apps	CCRM Project
+Java EE	Enterprise apps (web servers, APIs)	Online University Portals
+Java ME	Mobile/embedded devices	Smart cards, IoT
+ Java Architecture
 
-Import/export students and courses from CSV-like files.
+JDK (Java Development Kit): Tools + compiler (javac) for developers.
 
-Backup data to timestamped folders.
+JRE (Java Runtime Environment): Libraries + JVM for running applications.
 
-Recursive utilities for backup folder size or file listing.
+JVM (Java Virtual Machine): Executes compiled bytecode independent of OS.
 
-CLI Workflow
+Flow:
+Source Code (.java) → Compiler (javac) → Bytecode (.class) → JVM Execution
 
-Interactive menu-driven interface using if-else, switch, loops, and control flow (break/continue).
+ Setup Instructions
 
-Example menu options: Add Student, List Courses, Enroll Student, Export Data, Backup Data.
+Install Java JDK 17 or later
 
- How to Run
-Prerequisites
+Download from Oracle
+ or OpenJDK
+.
 
-Java SE 17+ installed and configured in PATH.
+Verify installation:
 
-Terminal/Command Prompt access.
-
-Steps
-
-Clone the repository:
-
-git clone https://github.com/username/repository.git
-cd repository
+java -version
+javac -version
 
 
-Compile project:
+Compile Project
+
+From project root (C:\CCRM):
 
 javac -d bin @sources.txt
 
 
-Run the main program:
+Run Project
 
 java -cp bin edu.ccrm.cli.Main
 
+ Mapping Syllabus Topics to Project Files
+Concept	Implementation
+Encapsulation	Student.java, Course.java (private fields + getters/setters)
+Inheritance	CourseServiceImpl.java (implements service interface)
+Polymorphism	Method overriding in service classes
+Abstraction	Service interfaces (StudentService, CourseService)
+File Handling	FileStorageService.java, BackupService.java
+Exception Handling	Try-catch blocks in CLI input and I/O operations
+ Assertions
 
-Use the interactive menu to perform operations:
+Assertions can be enabled to check assumptions during runtime:
 
-Add Student → menu option 1
-
-List Students → menu option 2
-
-Add Course → menu option 3
-
-List Courses → menu option 4
-
-Backup Data → menu option for backup
-
-Exit → menu option 5
-
- Project Structure
-edu.ccrm/
- ├─ cli/        → Menu-driven console interface
- ├─ domain/     → Entities (Student, Course, etc.)
- ├─ service/    → Business logic (StudentService, CourseService, etc.)
- ├─ io/         → Import/Export, BackupService
- ├─ util/       → Validators, Comparators, recursion utilities
- └─ config/     → AppConfig (Singleton), Builders
-test-data/       → CSV files for students & courses
-screenshots/     → CLI screenshots of program execution
-README.md
-requirements.md
-USAGE.md
-
- Evolution of Java
-
-1995 → Java introduced by Sun Microsystems.
-
-1996 → JDK 1.0 released.
-
-2004 → Java 5 introduced generics, annotations, enums.
-
-2011 → Java 7 added try-with-resources, NIO.2.
-
-2014 → Java 8 added lambdas, Streams API, Date/Time API.
-
-2017+ → Regular 6-month release cycle, new features like var, modules, records.
-
- Java Editions Comparison
-Feature	Java ME	Java SE	Java EE
-Scope	Mobile, IoT	Desktop, CLI, Core	Web, Enterprise
-Libraries	Limited	Core Java APIs	Servlets, JPA, EJB
-Example	Mobile app	CCRM project	Banking systems
- Java Architecture
-
-JDK: Full toolkit (compiler, libraries).
-
-JRE: JVM + core libraries to run Java programs.
-
-JVM: Executes Java bytecode, providing OS-independent execution.
-
-Flow: Source Code → javac → Bytecode → JVM → OS Execution
-
-🏗️ Mapping Syllabus Topics → Project Files
-Concept	Example Implementation
-Encapsulation	Student.java (private fields, getters/setters)
-Inheritance	Person.java → Student.java
-Abstraction	Person.java (abstract class)
-Polymorphism	Transcript generation (toString() override)
-Arrays	Course sorting by code
-Strings	Name/Email validation, course search
-Interfaces	Persistable, Searchable<T>
-Lambdas/Streams	Filtering courses by semester
-Singleton Pattern	AppConfig.java
-Builder Pattern	Course.Builder
-Custom Exceptions	DuplicateEnrollmentException, MaxCreditLimitExceededException
-NIO.2 & Streams	BackupService.java, ImportExportService.java
-Recursion	RecursionUtil.java (directory size)
- Sample Usage
-
-Menu Example:
-
-===== Campus Course & Records Manager =====
-1. Add Student
-2. List Students
-3. Add Course
-4. List Courses
-5. Exit
-Enter choice:
-
-
-Commands
-
-Add Student → menu option 1 → input details → confirmation.
-
-List Courses → menu option 4 → display all courses.
-
-Enroll Student → menu option 2 or 3 depending on menu.
-
-Export Data → menu option → creates students.csv & courses.csv.
-
-Backup Data → menu option → creates backup/YYYYMMDD_HHMM/.
+java -ea -cp bin edu.ccrm.cli.Main
 
  Test Data
 
-Location: /test-data folder
+Place sample files in test-data/ before running import/export features.
 
 students.csv
+
 id,name,major
 1,MRADUL YADAV,BTECH4
 2,ANITA SINGH,BTECH3
 3,RAHUL KUMAR,BTECH2
 
+
 courses.csv
+
 code,title,credits,instructor,semester,department
-C101,Java Programming,4,DR. SMITH,FALL,CS
-C102,Data Structures,3,DR. JOHN,SPRING,CS
-C103,Database Systems,3,DR. LEE,FALL,CS
+C101,Java Programming,4,Dr. Smith,Fall,CS
+C102,Data Structures,3,Dr. John,Spring,CS
+C103,Database Systems,3,Dr. Lee,Fall,CS
 
- Screenshots (CLI)
+ Screenshots (to be placed in screenshots/ folder)
 
-java_version.png → Java version in terminal
+java_version.png → Output of java -version
 
-project_structure.png → Folder layout
+add_student.png → Student creation menu
 
-compile_project.png → Successful compilation
+list_students.png → Display students
 
-main_menu.png → Initial menu
+add_course.png → Course creation menu
 
-add_student.png → Adding student
+list_courses.png → Display courses
 
-list_students.png → Listing students
+backup_folder.png → Backup folder with timestamp
 
-add_course.png → Adding course
+ Acknowledgements
 
-list_courses.png → Listing courses
-
-export_data.png → Export CSV files
-
-backup_folder.png → Backup folder creation
-
-Academic Integrity
-
-All code is written originally for educational purposes.
-
-References are cited if any external sources were used.
-
-No plagiarism or AI-generated content is submitted.
+This project was created as part of the Programming in Java course requirements.
+All design, implementation, and documentation are original. References were made to official Java documentation and standard textbooks only.
